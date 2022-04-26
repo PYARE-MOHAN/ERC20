@@ -39,6 +39,7 @@ contract ERC20 is IERC20{
         _balances[from] -= value;
         _balances[to] += value;
         _allowed[from][msg.sender] -= value;
+        emit Transfer(from, to, value);
 
         return true;
 
@@ -48,6 +49,7 @@ contract ERC20 is IERC20{
         _allowed[msg.sender][spender] =  value;
 
         return true;
+        emit Approval(msg.sender, spender, value);
 
     }
     function allowance(address owner,address spender)public view override returns(uint256){
